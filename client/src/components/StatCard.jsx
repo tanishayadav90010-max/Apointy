@@ -1,0 +1,1 @@
+export default function StatCard({label,value,icon}){return <div className="card p-5"><div className="flex justify-between items-center"><div><p className="text-sm text-slate-500">{label}</p><p className="text-3xl font-extrabold mt-1">{value}</p></div><div className="p-3 rounded-xl bg-blue-50 text-blue-600">{icon}</div></div></div>}

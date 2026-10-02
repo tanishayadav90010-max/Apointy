@@ -1,0 +1,44 @@
+Appointy — Quick Start 🚀
+
+Terminal 1 — Server
+
+cd server
+npm run dev
+
+Terminal 2 — Frontend
+
+cd client
+npm run dev
+
+Open:
+
+http://localhost:5173
+Login
+
+Patient
+
+patient@appointy.com
+Appointy@123
+
+Doctor
+
+ananya@appointy.com
+Appointy@123
+
+Admin
+
+admin@appointy.com
+Appointy@123
+
+
+First time only
+cd server
+npm install
+npm run seed
+
+and:
+
+cd client
+npm install
+
+Flow: MongoDB → Server → Frontend → Browser.

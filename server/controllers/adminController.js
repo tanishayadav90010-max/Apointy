@@ -1,0 +1,5 @@
+import User from '../models/User.js';import Doctor from '../models/Doctor.js';import Appointment from '../models/Appointment.js';
+export const dashboard=async(req,res,next)=>{try{const [patients,doctors,pending,appointments,completed,cancelled]=await Promise.all([User.countDocuments({role:'patient'}),Doctor.countDocuments(),Doctor.countDocuments({approvalStatus:'Pending'}),Appointment.countDocuments(),Appointment.countDocuments({status:'Completed'}),Appointment.countDocuments({status:'Cancelled'})]);res.json({patients,doctors,pending,appointments,completed,cancelled});}catch(e){next(e)}};
+export const patients=async(req,res,next)=>{try{res.json(await User.find({role:'patient'}).select('-password').sort({createdAt:-1}));}catch(e){next(e)}};
+export const appointments=async(req,res,next)=>{try{res.json(await Appointment.find().populate('patientId','name email').populate({path:'doctorId',populate:{path:'userId',select:'name email'}}).sort({createdAt:-1}));}catch(e){next(e)}};
+export const deletePatient=async(req,res,next)=>{try{await User.findOneAndDelete({_id:req.params.id,role:'patient'});res.json({message:'Patient deleted'});}catch(e){next(e)}};
